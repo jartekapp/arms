@@ -1,0 +1,295 @@
+@import 'bs-4';
+@import 'mobile-nav';
+
+#app .navbar {
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background: #fff;
+}
+
+.navbar-brand {
+    padding: 15px;
+}
+
+.video-card {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    background: #efefef;
+    cursor: pointer;
+
+    @media (max-width: 767px) {
+        margin-bottom: 20px;
+    }
+
+    &-title {
+        padding: 20px 20px 40px;
+        background-color: $brand-primary;
+        color: #fff;
+        width: 100%;
+        margin: 0;
+        position: relative;
+        min-height: 112px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+
+        &:after {
+            content: ' ';
+            display: block;
+            width: 40px;
+            height: 7px;
+            background-color: #fff;
+            position: absolute;
+            bottom: 20px;
+            left: calc(50% - 20px);
+        }
+    }
+
+    &-preview {
+        position: relative;
+        height: 200px;
+        background: #000;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+
+        &-overlay, &-locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(31, 31, 31, 0.9);
+            color: #bbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+    
+            .fa {
+                font-size: 11rem;
+                margin: 20px 0 10px;
+            }
+        }
+    }
+}
+
+.page-section {
+    margin: 50px 0;
+}
+
+#signup-form {
+    .g-recaptcha {
+        display: inline-block;
+    }
+
+    .alert {
+        margin: 0;
+    }
+
+    @media (max-width: 767px) {
+        .form-control {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+#call-to-action, #signup-form {
+    transition: 1s transform;
+}
+
+body.page-layout {
+    padding-top: $navbar-height;
+}
+
+.landing-page-section {
+    margin-top: 0;
+    min-height: calc(100vh - #{$navbar-height});
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .page-title {
+        font-size: 20rem;
+
+        @media (max-width: 767px) {
+            font-size: 10rem;
+        }
+    }
+
+    > :first-child {
+        margin-top: 0;
+    }
+}
+
+.text-shadow {
+    text-shadow: 0 2px 5px #111;
+}
+
+.page-section-title {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    color: $brand-primary;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    display: table;
+    white-space: nowrap;
+
+    .light-bg & {
+        color: $light-bg-text-color;
+    }
+
+    &:before, &:after {
+        border-top: 2px solid $brand-primary;
+        content: '';
+        display: table-cell;
+        position: relative;
+        top: 0.5em;
+        width: 50%;
+
+        .light-bg & {
+            border-color: $light-bg-text-color;
+        }
+    }
+    &:before { right: 1.5%; }
+    &:after { left: 1.5%; }
+}
+
+.page-section {
+    position: relative;
+    
+    p, h2 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    p {
+        color: $light-bg-text-color;
+    }
+
+    .lead {
+        color: $light-bg-text-color;
+        font-weight: bold;
+        font-size: 3rem;
+    }
+
+    &.angled-high-to-low-top {
+        padding-top: $section-slant;
+        clip-path: polygon(0 0, 100% $section-slant, 100% 100%, 0 100%);
+    }
+
+    &.angled-low-to-high-top {
+        padding-top: $section-slant;
+        clip-path: polygon(0 $section-slant, 100% 0, 100% 100%, 0 100%);
+    }
+
+    &.angled-high-to-low-bottom {
+        padding-bottom: $section-slant;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - #{$section-slant}));
+
+        &.angled-high-to-low-top {
+            clip-path: polygon(0 0, 100% $section-slant, 100% 100%, 0 calc(100% - #{$section-slant}));
+        }
+
+        &.angled-low-to-high-top {
+            clip-path: polygon(0 $section-slant, 100% 0, 100% 100%, 0 calc(100% - #{$section-slant}));
+        }
+    }
+
+    &.angled-low-to-high-bottom {
+        padding-bottom: $section-slant;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$section-slant}), 0 100%);
+
+        &.angled-high-to-low-top {
+            clip-path: polygon(0 0, 100% $section-slant, 100% calc(100% - #{$section-slant}), 0 100%);
+        }
+
+        &.angled-low-to-high-top {
+            clip-path: polygon(0 $section-slant, 100% 0, 100% calc(100% - #{$section-slant}), 0 100%);
+        }
+    }
+}
+
+.light-bg {
+    background-color: $light-bg;
+    color: $light-bg-text-color;
+}
+
+.dark-bg {
+    background-color: $dark-bg;
+    color: $dark-bg-text-color;
+}
+
+.connect-page-section {
+    color: $dark-bg-text-color;
+    background-color: $dark-bg;
+    padding-bottom: $section-slant;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$section-slant}), 50% 100%, 0 calc(100% - #{$section-slant}));
+
+    .page-section-title {
+        color: $dark-bg-text-color;
+        &:after, &:before {
+            border-color: $dark-bg-text-color;
+        }
+    }
+
+    .connect-info {
+        color: $dark-bg-text-color-alt;
+        font-size: 2rem;
+    }
+}
+
+.language-page-section {
+    p {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    img {
+        height: 2rem;
+        width: auto;
+        margin-top: -4px;
+    }
+
+    a {
+        font-size: 2rem;
+        color: $dark-bg;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 3px;
+
+        &:hover, &:focus {
+            text-decoration: none;
+            background-color: $light-bg;
+        }
+
+        &:active {
+            background-color: darken($light-bg, 10%);
+        }
+    }
+
+    span {
+        font-size: 2rem;
+        color: $dark-bg;
+        font-weight: bold;
+        padding: 0 15px;
+    }
+}
