@@ -48,12 +48,25 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Route::is('home.edit'))
+                        @if (Route::is('home.edit') || (isset($page) && 'home' === $page->slug))
                             <li><a href="/">Cancel editing</a></li>
+                        @elseif (Route::is('page.edit'))
+                            <li><a href="{{ route('page', $page->slug) }}">Cancel editing</a></li>
                         @endif
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Pages <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    @foreach (App\Page::all() as $page)
+                                        <li><a href="{{ route('page.edit', $page->slug) }}">{{ $page->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

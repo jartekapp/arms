@@ -43,8 +43,8 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url('/#') }}">Home</a></li>
-                    <li><a href="{{ url('#about-us') }}">About Us</a></li>
+                    <li><a href="{{ url('/') }}#">Home</a></li>
+                    <li><a href="{{ url('/') }}#about-us">About Us</a></li>
                     <li><a href="{{ url('projects') }}">Projects</a></li>
                     <li><a href="{{ url('search') }}">Disability Services Search</a></li>
                     <li><a href="{{ url('contact') }}">Contact Us</a></li>
@@ -54,7 +54,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @endif
                     @else
-                        <li><a href="{{ route('home.edit') }}">Edit</a></li>
+                        @if (Route::is('page'))
+                            <li><a href="{{ route('page.edit', $page->slug) }}">Edit</a></li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -75,13 +77,42 @@
                             </ul>
                         </li>
                     @endif
-                    <li><a href="{{ config('app.main_site') }}">Language</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language <span class="caret"></span></span></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="?lang=en"><img src="{{ asset('img/english.png') }}" alt="english" style="width: 30px" /> English</a></li>
+                            <li><a href="?lang=zh"><img src="{{ asset('img/chinese.png') }}" alt="english" style="width: 30px" /> Chinese</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     @yield('content')
+
+    <section class="page-section connect-page-section mt-0">
+        <div class="container">
+            <h2 class="page-section-title">Connect With Us</h2>
+            <p class="text-center">
+                <img src="{{ asset('img/qr.png') }}" alt="qr" />
+            </p>
+            <p class="connect-info text-center" style="margin-top: 50px;">
+                Phone: 02 4274 1090 | Email: info@australianmercy.org | WeChat ID: arms_china_wechat
+            </p>
+        </div>
+    </section>
+
+    <section class="page-section language-page-section">
+        <div class="container">
+            <p class="text-center">
+                <a href=""><img src="{{ asset('img/english.png') }}" alt="english" /> English</a>
+                <span> | </span>
+                <a href=""><img src="{{ asset('img/chinese.png') }}" alt="english" /> Chinese</a>
+            </p>
+        </div>
+    </section>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

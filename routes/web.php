@@ -13,10 +13,18 @@
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->name('home.edit');
+Route::get('admin', 'AdminController@index')->name('home.edit');
 
-Route::put('/admin', 'AdminController@update')->name('home.update');
+Route::get('admin/{slug}', 'AdminController@index')->name('page.edit');
 
-Route::post('/signup', 'SignupController@store')->name('signup');
+Route::put('admin', 'AdminController@update')->name('home.update');
 
-Route::get('/{slug?}', 'PageController@show');
+Route::put('admin/{slug}', 'AdminController@update')->name('page.update');
+
+Route::post('signup', 'SignupController@store')->name('signup');
+
+Route::post('contact', 'ContactController@store')->name('contact');
+
+Route::resource('admin/resources', 'ResourceController');
+
+Route::get('{slug?}', 'PageController@show')->name('page');

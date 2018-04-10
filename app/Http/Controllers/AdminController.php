@@ -20,19 +20,20 @@ class AdminController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param string $slug
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug = 'home')
     {
-        $page = Page::where(['slug' => 'home'])->first();
+        $page = Page::where(compact('slug'))->first();
 
-        return view('admin', compact('page'));
+        return view('admin', compact('page' ));
     }
 
-    public function update()
+    public function update($slug = 'home')
     {
         // return request()->all();
-        $page = Page::where(['slug' => 'home'])->firstOrFail();
+        $page = Page::where(compact('slug'))->firstOrFail();
 
         collect(request('fields', []))->each(function ($content, $slug) use ($page) {
             $field = $page->fields()->where(compact('slug'))->firstOrFail();
@@ -62,6 +63,6 @@ class AdminController extends Controller
             $field->update(compact('content'));
         });
 
-        return redirect()->back()->with('status', 'Saved home page');
+        return redirect()->back()->with('status', 'Saved page');
     }
 }

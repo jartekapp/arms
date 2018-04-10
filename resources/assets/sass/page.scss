@@ -176,13 +176,19 @@ body.page-layout {
 .page-section {
     position: relative;
     
-    p, h2 {
+    h2 {
         margin-top: 50px;
         margin-bottom: 50px;
     }
 
     p {
         color: $light-bg-text-color;
+    }
+
+    .two-col {
+        column-count: 2;
+        column-rule: 1px solid $light-bg-text-color;
+        column-gap: 40px;
     }
 
     .lead {

@@ -17,12 +17,12 @@
             @endif
 
             <div class="panel panel-default">
-                <div class="panel-heading">Edit home page</div>
+                <div class="panel-heading">Edit {{ $page->name }} Page</div>
 
                 <div class="panel-body">
                     @if ($page)
 
-                        {!! Form::open(['route' => 'home.update', 'method' => 'PUT']) !!}
+                        {!! Form::open(['route' => ['page.update', $page->slug], 'method' => 'PUT']) !!}
                             @foreach ($page->fields as $field)
                                 <div class="form-group row">
                                     <label for="{{ $field->slug }}" class="col-md-4 control-label">{{ $field->name }}</label>

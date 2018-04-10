@@ -18,6 +18,6 @@ class Page extends Model
 
     public function field($slug)
     {
-        return $this->fields->where('slug', $slug)->first()->content;
+        return $this->fields()->where('slug', $slug)->first()->content;
     }
 }

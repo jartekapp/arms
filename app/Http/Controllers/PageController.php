@@ -11,6 +11,6 @@ class PageController extends Controller
     {
         $page = Page::where(compact('slug'))->firstOrFail();
 
-        return view('welcome', compact('page'));
+        return view('pages.' . $slug, compact('page'));
     }
 }
